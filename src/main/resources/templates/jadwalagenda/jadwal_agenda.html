@@ -1,0 +1,77 @@
+<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml">
+    <style>
+        a:link {
+            color: white;
+        }
+    </style>
+</div>
+<div th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml" class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box box-widget">
+                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                <center>
+                                    <span style="text-transform: uppercase;"><b>PROYEK TAHUN </b> <b
+                                            id="proyek"></b></span>
+                                </center>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-stacked" th:each="isi,iterationStatus   : ${PROYEK}">
+                                    <li><a th:href="@{/proyek/}+${isi.NO_PERMOHONAN}"><div th:text="${isi.NAMA_PROJECT}"></div></a></li>
+                                </ul>
+                            </div>
+                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                <center>
+                                    <a th:href="@{/proyek_all}"><span style="text-transform: uppercase;">TAMPILKAN SEMUA PROYEK</span></a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box box-widget">
+                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                <center>
+                                    <span style="text-transform: uppercase;"><b>JADWAL AGENDA TAHUN</b> <b
+                                            id="bulan"></b></span>
+                                </center>
+                            </div>
+                            <div class="box-body no-padding">
+                                <ul class="nav nav-stacked">
+                                    <li><a th:href="@{/bulan/01}">JANUARI</a></li>
+                                    <li><a th:href="@{/bulan/02}">FEBRUARI</a></li>
+                                    <li><a th:href="@{/bulan/03}">MARET</a></li>
+                                    <li><a th:href="@{/bulan/04}">APRIL</a></li>
+                                    <li><a th:href="@{/bulan/05}">MEI</a></li>
+                                    <li><a th:href="@{/bulan/06}">JUNI</a></li>
+                                    <li><a th:href="@{/bulan/07}">JULI</a></li>
+                                    <li><a th:href="@{/bulan/08}">AGUSTUS</a></li>
+                                    <li><a th:href="@{/bulan/09}">SEPTEMBER</a></li>
+                                    <li><a th:href="@{/bulan/10}">OKTOBER</a></li>
+                                    <li><a th:href="@{/bulan/11}">NOVEMBER</a></li>
+                                    <li><a th:href="@{/bulan/12}">DESEMBER</a></li>
+                                </ul>
+                            </div>
+                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                <center>
+                                    <a th:href="@{/bulan_all}"><span style="text-transform: uppercase;">TAMPILKAN SEMUA AGENDA BULANAN</span></a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(document).ready(function () {
+            console.log(new Date().getFullYear());
+            document.getElementById("proyek").innerHTML = new Date().getFullYear();
+            document.getElementById("bulan").innerHTML = new Date().getFullYear();
+        });
+    </script>
+</div>

@@ -1,0 +1,97 @@
+<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml" class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <br />
+                <!--<div class="row">-->
+                <!--<h4><strong> BERITA</strong></h4>-->
+                <!--<br/>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="box box-widget">
+                            <img class="img-responsive" th:src="@{/static/dist/img/photo2.png}" alt="Photo"/>
+                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                <span style="text-transform: uppercase;"><b>Judul isian untuk menu dikegiatan</b></span>
+                                <br/>
+                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="small-box" style="background-color: #16A085;">
+                            <div class="inner">
+                                <H4 style="padding-left: 15px"><b>Permohonan <br/>Walman Baru</b></H4>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-8" style="padding-left: 15px">Untuk Permohonan walman baru silahkan mengisi formulir berikut ini!
+                                </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <a th:href="@{/input_permohonan}" class="small-box-footer" style="min-height: 40px; padding-top: 10px;">
+                                <b>Info Lebih Lanjut</b> <i class="fa fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                        <br/>
+                        <div class="small-box" style="background-color: #F1C40F;min-height: 200px;">
+                            <div class="inner">
+                                <H4 style="padding-left: 15px"><b>Walman <br/>Saat Ini</b></H4>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-8" style="padding-left: 15px">Untuk melihat daftar walman yang masuk saat ini silahkan klik link berikut ini!
+                                </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <a th:href="@{/lihat_permohonan}" class="small-box-footer" style="min-height: 40px; padding-top: 10px;">
+                                <b>Info Lebih Lanjut</b> <i class="fa fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4><strong> KEGIATAN</strong></h4>
+                    <br/>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div th:each="isi : ${kegiatan}">
+
+
+                                <div class="col-md-3">
+                                    <div class="box box-widget">
+                                        <img class="img-responsive" th:src="@{/static/dist/img/photo2.png}"
+                                             alt="Photo"/>
+                                        <div class="box-header" style="background-color: #2c3e50;	color: #ffffff; min-height: 70px">
+                                            <span style="text-transform: uppercase;"><b
+                                                    th:text="${isi.NAMA}"></b></span>
+                                            <br/>
+                                            <span class="text-muted"><b th:text="${isi.INISIAL}"></b></span><br/>
+                                        </div>
+                                        <div class="box-body" th:utext="${isi.ISI_PENDEK}" style="min-height: 100px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml"></div>

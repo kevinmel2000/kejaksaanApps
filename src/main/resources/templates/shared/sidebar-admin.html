@@ -1,0 +1,32 @@
+<aside th:fragment="sidebar-admin" xmlns:th="http://www.w3.org/1999/xhtml" class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li><a th:href="@{#}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span>Configuration</span>
+                    <span class="pull-right-container"></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{#}">Database</a></li>
+                    <li><a th:href="@{/admin/user}">User</a></li>
+                    <li><a th:href="@{#}">Role</a></li>
+                    <li><a th:href="@{#}">Menu</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Log Manajement</span>
+                    <span class="pull-right-container"></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{#}">User Login</a></li>
+                    <li><a th:href="@{#}">Access</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</aside>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tim Pengawal dan Pengamanan Pemerintah dan Pembangunan (TP4)</title>
+    <!-- Root Css -->
+
+    <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet"
+          th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/dist/css/AdminLTE.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/dist/css/skins/_all-skins.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/dist/css/style.css}" />
+
+    <!-- Css Page -->
+    <div th:replace="${view} :: stylesheets"></div>
+    <style>
+        .footer li a {
+            text-decoration: none;
+            color: whitesmoke;
+        }
+        .listBerita a:link{
+            color: #333;
+        }
+        .listBerita a:visited{
+            color: #333;
+        }
+        .box1 {
+            min-width: 100px;
+            height: 100px;
+            margin: 0 auto 0 auto;
+        }
+    </style>
+</head>
+
+<body  class="hold-transition skin-green-light layout-top-nav ">
+<div class="wrapper">
+    <div th:replace="shared/header :: header"></div>
+    <div th:replace="${view} :: content"></div>
+    <div th:replace="shared/footer :: footer"></div>
+</div>
+<!--Header-->
+
+<!--<br/>-->
+<!--<div th:replace="shared/slider :: slider"></div>-->
+<!--<div th:replace="${view} :: content"></div>-->
+<!--<div th:replace="shared/footer :: footer"></div>-->
+
+
+<!--&lt;!&ndash;Site Wapper&ndash;&gt;-->
+<!--<div class="wrapper">-->
+
+
+<!--&lt;!&ndash;Sidebar&ndash;&gt;-->
+<!--<aside th:replace="shared/sidebar-admin :: sidebar-admin"></aside>-->
+
+<!--&lt;!&ndash;Content&ndash;&gt;-->
+<!--<div th:replace="${view} :: content"></div>-->
+
+<!--&lt;!&ndash;Footer&ndash;&gt;-->
+<!--<footer th:replace="shared/footer :: footer"></footer>-->
+<!--</div>-->
+
+<!--Js Root-->
+<script th:src="@{/static/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/static/plugins/fastclick/fastclick.js}"></script>
+<script th:src="@{/static/dist/js/app.min.js}"></script>
+<script th:src="@{/static/dist/js/demo.js}"></script>
+<script th:src="@{/static/dist/js/ScrollMagic.js}"></script>
+
+
+<div th:replace="${view} :: scripts"></div>
+<!--<script type="text/javascript">-->
+    <!--$(document).ready(function () {-->
+        <!--$('label.tree-toggler').click(function () {-->
+            <!--$(this).parent().children('ul.tree').toggle(300);-->
+        <!--});-->
+        <!--$('.bxslider').bxSlider();-->
+    <!--});-->
+<!--</script>-->
+</body>
+</html>

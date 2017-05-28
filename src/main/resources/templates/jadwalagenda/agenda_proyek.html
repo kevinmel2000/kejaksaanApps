@@ -1,0 +1,62 @@
+<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" th:href="@{/static/plugins/datatables/dataTables.bootstrap.css}" />
+</div>
+<div th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml" class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-widget">
+                            <div class="box-header" style="background-color: #2c3e50; height: 50px; color: white; ">
+                                <h5>
+                                    <b th:text="${JUDUL}"></b>
+                                    <b th:each="isi,iterationStatus   : ${NAMA}"> <b th:text="${isi.NAMA_PROJECT}"></b></b>
+                                </h5>
+                            </div>
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 50px;">TANGGAL</th>
+                                        <th style="width: 50px;">JAM</th>
+                                        <th>PERIHAL</th>
+                                        <th>KETERANGGAN</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <tr th:each="isi,iterationStatus   : ${data}">
+                                        <td th:text="${#strings.substring(isi.TGL_MULAI,0,10)}"></td>
+                                        <td th:text="${#strings.substring(isi.TGL_MULAI,11,19)}"></td>
+                                        <td th:text="${isi.JUDUL}"></td>
+                                        <td th:text="${isi.ISI}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script type="text/javascript" th:src="@{/static/plugins/datatables/jquery.dataTables.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+</div>

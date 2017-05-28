@@ -1,0 +1,63 @@
+<div th:fragment="footer" xmlns:th="http://www.w3.org/1999/xhtml" >
+    <footer class="footer" style="background-color:#2c3e50; color: white !important" th:each="isi : ${konfigurasi}">
+        <div class="container" style="background-color:#2c3e50; ">
+            <h3>TP4 PUSAT</h3>
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <div class="weight">
+                        <strong>Tentang Kami</strong>
+                        <p th:text="${isi.TENTANG}"></p>
+
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <div class="weight">
+                        <strong>Profil</strong>
+                        <ul>
+                            <li><a th:href="@{#}">Latar Belakang</a></li>
+                            <li><a th:href="@{#}">Tentang T4</a></li>
+                            <li><a th:href="@{#}">Visi dan Misi</a></li>
+                            <li><a th:href="@{#}">Tugas dan Wewenang</a></li>
+                            <li><a th:href="@{#}">Mekanisme Bekerja</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <div class="weight">
+                        <strong>Kegiatan</strong>
+                        <ul>
+                            <li><a th:href="@{#}">Kegiatan Walman</a></li>
+                            <li><a th:href="@{#}">TP4 D</a></li>
+                            <li><a th:href="@{#}">TP4 P</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-2">
+                    <div class="weight">
+                        <strong>Kemitraan</strong>
+                        <ul>
+                            <li><a th:href="@{#}">Kementrian</a></li>
+                            <li><a th:href="@{#}">BUMN</a></li>
+                            <li><a th:href="@{#}">BUMD</a></li>
+                            <li><a th:href="@{#}">Pemerintah Provinsi</a></li>
+                            <li><a th:href="@{#}">Pemerintah Kota / Daerah</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div class="weight">
+                        <strong>Kontak Kami</strong>
+                        <p th:text="${isi.TITLE}"></p>
+                        <p th:text="${isi.ALAMAT}">Jl. Sultan Hasanuddin No.1 Kebayoran Baru Jakarta Selatan - Indonesia</p>
+                        <p><div th:text="${isi.TLP}"></div><div th:text="${isi.EMAIL}"></div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+            <p>@2017 Tim Pengawal dan Pengaman Pemerintah dan Pembangunan (TP4)</p>
+        </div>
+    </footer>
+</div>

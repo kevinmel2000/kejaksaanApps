@@ -1,0 +1,26 @@
+<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml" class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12" >
+                        <div class="box box-widget">
+                           <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                <center>
+                                    <span style="text-transform: uppercase;"><b th:text="${JUDUL}"></b></span>
+                                </center>
+                            </div>
+                            <div class="box-body text-justify">
+                                <div th:each="isi : ${DATA}">
+                                        <div th:utext="${isi.ISI}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml"></div>

@@ -1,0 +1,151 @@
+<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" th:href="@{/static/plugins/datatables/dataTables.bootstrap.css}" />
+</div>
+<div th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml" class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-widget">
+                            <div class="box-header" style="background-color: #2c3e50; height: 50px; color: white; ">
+                                <h5><b th:text="${JUDUL}"></b></h5>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" th:action="@{/simpan_permohonan}"  method="post">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label>Nama Pemohon</label>
+                                            <input type="text" class="form-control" name="p_nama_pemohon" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alamat</label>
+                                            <textarea name="p_alamat" rows="3" class="form-control"></textarea>
+                                            <!--<input type="text" class="form-control"  />-->
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Instansi</label>
+                                            <input type="text" class="form-control" name="p_instansi" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jenis Instansi</label>
+                                            <select name="p_jenis_instansi" class="form-control" >
+                                                <option th:each="isi : ${list_instansi}"
+                                                        th:value="${isi.INS_KODE}"
+                                                        th:text="${isi.INS_NAMA}" style="text-transform: uppercase;"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telepon</label>
+                                            <input type="text" class="form-control"  name="p_telepon"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control"  name="p_email"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jabatan</label>
+                                            <input type="text" class="form-control"  name="p_jabatan"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jenis Unit</label>
+                                            <select name="p_unit_type" class="form-control" id="jenisUnit">
+                                                <option value="1">Kejaksaan Agung</option>
+                                                <option value="2">Kejaksaan Tinggi (Kejati)</option>
+                                                <option value="3">Kejaksaan Negeri (Kejari)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" hidden="true" id="kejatiUnit">
+                                            <label>Pilih Unit</label>
+                                            <select name="p_unit_id" id="" class="form-control">
+                                                <option value="">SILAHKAN PILIH UNIT</option>
+                                                <option th:each="isi : ${kejati}"
+                                                        th:value="${isi.UNIT_ID}"
+                                                        th:text="${isi.UNIT_NAMA}" style="text-transform: uppercase;"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" hidden="true" id="kejariUnit">
+                                            <label>Pilih Unit</label>
+                                            <select name="p_unit_id" id="" class="form-control">
+                                                <option value="">SILAHKAN PILIH UNIT</option>
+                                                <option th:each="isi : ${kejari}"
+                                                        th:value="${isi.UNIT_ID}"
+                                                        th:text="${isi.UNIT_NAMA}" style="text-transform: uppercase;"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Perihal</label>
+                                            <input type="text" class="form-control"  name="p_judul"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Uraian</label>
+                                            <textarea rows="3" class="form-control" name="p_deskripsi" />
+                                        </div>
+                                        <!--<div class="form-group">-->
+                                            <!--<label>Nilai Project</label>-->
+                                            <!--<input type="text" class="form-control"  name="p_nilai_project"/>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label>Nama Project</label>-->
+                                            <!--<input type="text" class="form-control"  name="p_nama_project"/>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label>Lokasi Project</label>-->
+                                            <!--<textarea rows="3" class="form-control"  name="p_lokasi_project"/>-->
+                                        <!--</div>-->
+                                    </div>
+                                    <!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary pull-right">Kirim Permohonan Walman</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script type="text/javascript" th:src="@{/static/plugins/datatables/jquery.dataTables.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $('#jenisUnit').on('change', function () {
+                if (this.value==2){
+                    $('#kejatiUnit').show();
+                    $('#kejariUnit').hide();
+                    $('#kejariUnit select').val("");
+                } else if(this.value==3) {
+                    $('#kejatiUnit').hide();
+                    $('#kejatiUnit select').val("");
+                    $('#kejariUnit').show();
+                } else{
+                    $('#kejatiUnit select').val("");
+                    $('#kejariUnit select').val("");
+                    $('#kejatiUnit').hide();
+                    $('#kejariUnit').hide();
+                }
+            });
+        });
+
+    </script>
+</div>
