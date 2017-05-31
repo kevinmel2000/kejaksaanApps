@@ -12,21 +12,26 @@ public class Kegiatan {
     private String KODE_KEGIATAN;
     private String KODE_GROUP;
     private String NAMA;
+    private String NAMA_FILE;
     private String ISI;
     private String ISI_PENDEK;
     private String INISIAL;
     private String FLAG_TAMPIL;
     private String CREATE_DATE;
+    private String TOTAL_COUNT;
     private String CREATE_BY;
 
-    public Kegiatan(String KODE_KEGIATAN, String KODE_GROUP, String NAMA, String ISI, String INISAL, String FLAG_TAMPIL, String CREATE_DATE, String CREATE_BY) {
+    public Kegiatan(String KODE_KEGIATAN, String KODE_GROUP, String NAMA, String NAMA_FILE, String ISI, String ISI_PENDEK, String INISIAL, String FLAG_TAMPIL, String CREATE_DATE, String TOTAL_COUNT, String CREATE_BY) {
         this.KODE_KEGIATAN = KODE_KEGIATAN;
         this.KODE_GROUP = KODE_GROUP;
         this.NAMA = NAMA;
+        this.NAMA_FILE = NAMA_FILE;
         this.ISI = ISI;
-        this.INISIAL = INISAL;
+        this.ISI_PENDEK = ISI_PENDEK;
+        this.INISIAL = INISIAL;
         this.FLAG_TAMPIL = FLAG_TAMPIL;
         this.CREATE_DATE = CREATE_DATE;
+        this.TOTAL_COUNT = TOTAL_COUNT;
         this.CREATE_BY = CREATE_BY;
     }
 
@@ -114,17 +119,37 @@ public class Kegiatan {
         this.ISI_PENDEK = ISI_PENDEK;
     }
 
+    public String getNAMA_FILE() {
+        return NAMA_FILE;
+    }
+
+    @XmlElement(name = "NAMA_FILE")
+    public void setNAMA_FILE(String NAMA_FILE) {
+        this.NAMA_FILE = NAMA_FILE;
+    }
+
+    public String getTOTAL_COUNT() {
+        return TOTAL_COUNT;
+    }
+
+    @XmlElement(name = "TOTAL_COUNT")
+    public void setTOTAL_COUNT(String TOTAL_COUNT) {
+        this.TOTAL_COUNT = TOTAL_COUNT;
+    }
+
     @Override
     public String toString() {
         return "Kegiatan{" +
                 "KODE_KEGIATAN='" + KODE_KEGIATAN + '\'' +
                 ", KODE_GROUP='" + KODE_GROUP + '\'' +
                 ", NAMA='" + NAMA + '\'' +
+                ", NAMA_FILE='" + NAMA_FILE + '\'' +
                 ", ISI='" + ISI + '\'' +
                 ", ISI_PENDEK='" + ISI_PENDEK + '\'' +
                 ", INISIAL='" + INISIAL + '\'' +
                 ", FLAG_TAMPIL='" + FLAG_TAMPIL + '\'' +
                 ", CREATE_DATE='" + CREATE_DATE + '\'' +
+                ", TOTAL_COUNT='" + TOTAL_COUNT + '\'' +
                 ", CREATE_BY='" + CREATE_BY + '\'' +
                 '}';
     }

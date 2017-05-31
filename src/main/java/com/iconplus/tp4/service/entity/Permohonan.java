@@ -9,131 +9,268 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "ROW")
 public class Permohonan {
 
-    private String p_nama_pemohon;
-    private String p_alamat;
-    private String p_instansi;
-    private String p_telepon;
-    private String p_email;
-    private String p_jabatan;
-    private String p_jenis;
-    private String p_unit_type;
-    private String p_unit_id;
-    private String p_judul;
-    private String p_deskripsi;
+    private String TOTAL_COUNT;
+    private String NO_PERMOHONAN;
+    private String NAMA_PEMOHON;
+    private String ALAMAT_PEMOHON;
+    private String INSTANSI_PEMOHON;
+    private String NILAI_PROJECT;
+    private String LOKASI_PROJECT;
+    private String TLP_PEMOHON;
+    private String EMAIL_PEMOHON;
+    private String JABATAN_PEMOHON;
+    private String TGL_PERMOHONAN;
+    private String UNIT_TYPE;
+    private String UNIT;
+    private String JUDUL_PERMOHONAN;
+    private String DESKRIPSI_PERMOHONAN;
+    private String STATUS_PERMOHONAN;
+    private String NO_PROYEK;
+    private String NAMA_UNIT;
+    private String NAMA_STATUS;
+    private String NAMA_PROJECT;
+    private String ROW_NUMBER;
 
-    public Permohonan(String p_nama_pemohon, String p_alamat, String p_instansi, String p_telepon, String p_email, String p_jabatan, String p_jenis, String p_unit_type, String p_unit_id, String p_judul, String p_deskripsi) {
-        this.p_nama_pemohon = p_nama_pemohon;
-        this.p_alamat = p_alamat;
-        this.p_instansi = p_instansi;
-        this.p_telepon = p_telepon;
-        this.p_email = p_email;
-        this.p_jabatan = p_jabatan;
-        this.p_jenis = p_jenis;
-        this.p_unit_type = p_unit_type;
-        this.p_unit_id = p_unit_id;
-        this.p_judul = p_judul;
-        this.p_deskripsi = p_deskripsi;
+    public Permohonan(String TOTAL_COUNT, String NO_PERMOHONAN, String NAMA_PEMOHON, String ALAMAT_PEMOHON, String INSTANSI_PEMOHON, String NILAI_PROJECT, String LOKASI_PROJECT, String TLP_PEMOHON, String EMAIL_PEMOHON, String JABATAN_PEMOHON, String TGL_PERMOHONAN, String UNIT_TYPE, String UNIT, String JUDUL_PERMOHONAN, String DESKRIPSI_PERMOHONAN, String STATUS_PERMOHONAN, String NO_PROYEK, String NAMA_UNIT, String NAMA_STATUS, String NAMA_PROJECT, String ROW_NUMBER) {
+        this.TOTAL_COUNT = TOTAL_COUNT;
+        this.NO_PERMOHONAN = NO_PERMOHONAN;
+        this.NAMA_PEMOHON = NAMA_PEMOHON;
+        this.ALAMAT_PEMOHON = ALAMAT_PEMOHON;
+        this.INSTANSI_PEMOHON = INSTANSI_PEMOHON;
+        this.NILAI_PROJECT = NILAI_PROJECT;
+        this.LOKASI_PROJECT = LOKASI_PROJECT;
+        this.TLP_PEMOHON = TLP_PEMOHON;
+        this.EMAIL_PEMOHON = EMAIL_PEMOHON;
+        this.JABATAN_PEMOHON = JABATAN_PEMOHON;
+        this.TGL_PERMOHONAN = TGL_PERMOHONAN;
+        this.UNIT_TYPE = UNIT_TYPE;
+        this.UNIT = UNIT;
+        this.JUDUL_PERMOHONAN = JUDUL_PERMOHONAN;
+        this.DESKRIPSI_PERMOHONAN = DESKRIPSI_PERMOHONAN;
+        this.STATUS_PERMOHONAN = STATUS_PERMOHONAN;
+        this.NO_PROYEK = NO_PROYEK;
+        this.NAMA_UNIT = NAMA_UNIT;
+        this.NAMA_STATUS = NAMA_STATUS;
+        this.NAMA_PROJECT = NAMA_PROJECT;
+        this.ROW_NUMBER = ROW_NUMBER;
     }
 
     public Permohonan() {
     }
 
-    public String getP_nama_pemohon() {
-        return p_nama_pemohon;
+    public String getTOTAL_COUNT() {
+        return TOTAL_COUNT;
     }
 
-    @XmlElement(name = "p_nama_pemohon")
-    public void setP_nama_pemohon(String p_nama_pemohon) {
-        this.p_nama_pemohon = p_nama_pemohon;
+    @XmlElement(name = "TOTAL_COUNT")
+    public void setTOTAL_COUNT(String TOTAL_COUNT) {
+        this.TOTAL_COUNT = TOTAL_COUNT;
     }
 
-    public String getP_alamat() {
-        return p_alamat;
+    public String getNO_PERMOHONAN() {
+        return NO_PERMOHONAN;
     }
 
-    @XmlElement(name = "p_alamat")
-    public void setP_alamat(String p_alamat) {
-        this.p_alamat = p_alamat;
+    @XmlElement(name = "NO_PERMOHONAN")
+    public void setNO_PERMOHONAN(String NO_PERMOHONAN) {
+        this.NO_PERMOHONAN = NO_PERMOHONAN;
     }
 
-    public String getP_instansi() {
-        return p_instansi;
+    public String getNAMA_PEMOHON() {
+        return NAMA_PEMOHON;
     }
 
-    @XmlElement(name = "p_instansi")
-    public void setP_instansi(String p_instansi) {
-        this.p_instansi = p_instansi;
+    @XmlElement(name = "NAMA_PEMOHON")
+    public void setNAMA_PEMOHON(String NAMA_PEMOHON) {
+        this.NAMA_PEMOHON = NAMA_PEMOHON;
     }
 
-    public String getP_telepon() {
-        return p_telepon;
+    public String getALAMAT_PEMOHON() {
+        return ALAMAT_PEMOHON;
     }
 
-    @XmlElement(name = "p_telepon")
-    public void setP_telepon(String p_telepon) {
-        this.p_telepon = p_telepon;
+    @XmlElement(name = "ALAMAT_PEMOHON")
+    public void setALAMAT_PEMOHON(String ALAMAT_PEMOHON) {
+        this.ALAMAT_PEMOHON = ALAMAT_PEMOHON;
     }
 
-    public String getP_email() {
-        return p_email;
+    public String getINSTANSI_PEMOHON() {
+        return INSTANSI_PEMOHON;
     }
 
-    @XmlElement(name = "p_email")
-    public void setP_email(String p_email) {
-        this.p_email = p_email;
+    @XmlElement(name = "INSTANSI_PEMOHON")
+    public void setINSTANSI_PEMOHON(String INSTANSI_PEMOHON) {
+        this.INSTANSI_PEMOHON = INSTANSI_PEMOHON;
     }
 
-    public String getP_jabatan() {
-        return p_jabatan;
+    public String getNILAI_PROJECT() {
+        return NILAI_PROJECT;
     }
 
-    @XmlElement(name = "p_jabatan")
-    public void setP_jabatan(String p_jabatan) {
-        this.p_jabatan = p_jabatan;
+    @XmlElement(name = "NILAI_PROJECT")
+    public void setNILAI_PROJECT(String NILAI_PROJECT) {
+        this.NILAI_PROJECT = NILAI_PROJECT;
     }
 
-    public String getP_jenis() {
-        return p_jenis;
+    public String getLOKASI_PROJECT() {
+        return LOKASI_PROJECT;
     }
 
-    @XmlElement(name = "p_jenis")
-    public void setP_jenis(String p_jenis) {
-        this.p_jenis = p_jenis;
+    @XmlElement(name = "LOKASI_PROJECT")
+    public void setLOKASI_PROJECT(String LOKASI_PROJECT) {
+        this.LOKASI_PROJECT = LOKASI_PROJECT;
     }
 
-    public String getP_unit_type() {
-        return p_unit_type;
+    public String getTLP_PEMOHON() {
+        return TLP_PEMOHON;
     }
 
-    @XmlElement(name = "p_unit_type")
-    public void setP_unit_type(String p_unit_type) {
-        this.p_unit_type = p_unit_type;
+    @XmlElement(name = "TLP_PEMOHON")
+    public void setTLP_PEMOHON(String TLP_PEMOHON) {
+        this.TLP_PEMOHON = TLP_PEMOHON;
     }
 
-    public String getP_unit_id() {
-        return p_unit_id;
+    public String getEMAIL_PEMOHON() {
+        return EMAIL_PEMOHON;
     }
 
-    @XmlElement(name = "p_unit_id")
-    public void setP_unit_id(String p_unit_id) {
-        this.p_unit_id = p_unit_id;
+    @XmlElement(name = "EMAIL_PEMOHON")
+    public void setEMAIL_PEMOHON(String EMAIL_PEMOHON) {
+        this.EMAIL_PEMOHON = EMAIL_PEMOHON;
     }
 
-    public String getP_judul() {
-        return p_judul;
+    public String getJABATAN_PEMOHON() {
+        return JABATAN_PEMOHON;
     }
 
-    @XmlElement(name = "p_judul")
-    public void setP_judul(String p_judul) {
-        this.p_judul = p_judul;
+    @XmlElement(name = "JABATAN_PEMOHON")
+    public void setJABATAN_PEMOHON(String JABATAN_PEMOHON) {
+        this.JABATAN_PEMOHON = JABATAN_PEMOHON;
     }
 
-    public String getP_deskripsi() {
-        return p_deskripsi;
+    public String getTGL_PERMOHONAN() {
+        return TGL_PERMOHONAN;
     }
 
-    @XmlElement(name = "p_deskripsi")
-    public void setP_deskripsi(String p_deskripsi) {
-        this.p_deskripsi = p_deskripsi;
+    @XmlElement(name = "TGL_PERMOHONAN")
+    public void setTGL_PERMOHONAN(String TGL_PERMOHONAN) {
+        this.TGL_PERMOHONAN = TGL_PERMOHONAN;
+    }
+
+    public String getUNIT_TYPE() {
+        return UNIT_TYPE;
+    }
+
+    @XmlElement(name = "UNIT_TYPE")
+    public void setUNIT_TYPE(String UNIT_TYPE) {
+        this.UNIT_TYPE = UNIT_TYPE;
+    }
+
+    public String getUNIT() {
+        return UNIT;
+    }
+
+    @XmlElement(name = "UNIT")
+    public void setUNIT(String UNIT) {
+        this.UNIT = UNIT;
+    }
+
+    public String getJUDUL_PERMOHONAN() {
+        return JUDUL_PERMOHONAN;
+    }
+
+    @XmlElement(name = "JUDUL_PERMOHONAN")
+    public void setJUDUL_PERMOHONAN(String JUDUL_PERMOHONAN) {
+        this.JUDUL_PERMOHONAN = JUDUL_PERMOHONAN;
+    }
+
+    public String getDESKRIPSI_PERMOHONAN() {
+        return DESKRIPSI_PERMOHONAN;
+    }
+
+    @XmlElement(name = "DESKRIPSI_PERMOHONAN")
+    public void setDESKRIPSI_PERMOHONAN(String DESKRIPSI_PERMOHONAN) {
+        this.DESKRIPSI_PERMOHONAN = DESKRIPSI_PERMOHONAN;
+    }
+
+    public String getSTATUS_PERMOHONAN() {
+        return STATUS_PERMOHONAN;
+    }
+
+    @XmlElement(name = "STATUS_PERMOHONAN")
+    public void setSTATUS_PERMOHONAN(String STATUS_PERMOHONAN) {
+        this.STATUS_PERMOHONAN = STATUS_PERMOHONAN;
+    }
+
+    public String getNO_PROYEK() {
+        return NO_PROYEK;
+    }
+
+    @XmlElement(name = "NO_PROYEK")
+    public void setNO_PROYEK(String NO_PROYEK) {
+        this.NO_PROYEK = NO_PROYEK;
+    }
+
+    public String getNAMA_UNIT() {
+        return NAMA_UNIT;
+    }
+
+    @XmlElement(name = "NAMA_UNIT")
+    public void setNAMA_UNIT(String NAMA_UNIT) {
+        this.NAMA_UNIT = NAMA_UNIT;
+    }
+
+    public String getNAMA_STATUS() {
+        return NAMA_STATUS;
+    }
+
+    @XmlElement(name = "NAMA_STATUS")
+    public void setNAMA_STATUS(String NAMA_STATUS) {
+        this.NAMA_STATUS = NAMA_STATUS;
+    }
+
+    public String getNAMA_PROJECT() {
+        return NAMA_PROJECT;
+    }
+
+    @XmlElement(name = "NAMA_PROJECT")
+    public void setNAMA_PROJECT(String NAMA_PROJECT) {
+        this.NAMA_PROJECT = NAMA_PROJECT;
+    }
+
+    public String getROW_NUMBER() {
+        return ROW_NUMBER;
+    }
+
+    @XmlElement(name = "ROW_NUMBER")
+    public void setROW_NUMBER(String ROW_NUMBER) {
+        this.ROW_NUMBER = ROW_NUMBER;
+    }
+
+    @Override
+    public String toString() {
+        return "Permohonan{" +
+                "TOTAL_COUNT='" + TOTAL_COUNT + '\'' +
+                ", NO_PERMOHONAN='" + NO_PERMOHONAN + '\'' +
+                ", NAMA_PEMOHON='" + NAMA_PEMOHON + '\'' +
+                ", ALAMAT_PEMOHON='" + ALAMAT_PEMOHON + '\'' +
+                ", INSTANSI_PEMOHON='" + INSTANSI_PEMOHON + '\'' +
+                ", NILAI_PROJECT='" + NILAI_PROJECT + '\'' +
+                ", LOKASI_PROJECT='" + LOKASI_PROJECT + '\'' +
+                ", TLP_PEMOHON='" + TLP_PEMOHON + '\'' +
+                ", EMAIL_PEMOHON='" + EMAIL_PEMOHON + '\'' +
+                ", JABATAN_PEMOHON='" + JABATAN_PEMOHON + '\'' +
+                ", TGL_PERMOHONAN='" + TGL_PERMOHONAN + '\'' +
+                ", UNIT_TYPE='" + UNIT_TYPE + '\'' +
+                ", UNIT='" + UNIT + '\'' +
+                ", JUDUL_PERMOHONAN='" + JUDUL_PERMOHONAN + '\'' +
+                ", DESKRIPSI_PERMOHONAN='" + DESKRIPSI_PERMOHONAN + '\'' +
+                ", STATUS_PERMOHONAN='" + STATUS_PERMOHONAN + '\'' +
+                ", NO_PROYEK='" + NO_PROYEK + '\'' +
+                ", NAMA_UNIT='" + NAMA_UNIT + '\'' +
+                ", NAMA_STATUS='" + NAMA_STATUS + '\'' +
+                ", NAMA_PROJECT='" + NAMA_PROJECT + '\'' +
+                ", ROW_NUMBER='" + ROW_NUMBER + '\'' +
+                '}';
     }
 }

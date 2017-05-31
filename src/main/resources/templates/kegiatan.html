@@ -4,40 +4,88 @@
         <div class="container">
             <section class="content">
                 <div class="row">
-                    <h4><strong> BERITA TERBARU</strong></h4>
-                    <br />
-                </div>
-                <div class="row">
                     <div class="col-md-6">
-                        <div class="box box-widget" th:each="isi :${satu}">
-                            <img class="img-responsive" th:src="@{/static/dist/img/photo2.png}" alt="Photo" />
-                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
-                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br />
-                                <span class="text-muted"><b th:text="${isi.INISIAL}"></b></span><br />
+                        <div class="box box-widget" th:each="isi : ${satu}">
+                            <div th:switch="${isi.NAMA_FILE}">
+                                <div th:case="'-'">
+                                    <center>
+                                        <img class="img-responsive" th:src="@{/static/dist/img/not-available.jpg}" alt="" style="height: 410px"/>
+                                    </center>
+                                </div>
+                                <div th:case="*">
+                                    <center>
+                                        <img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}"
+                                             alt="" style="height: 410px"/>
+                                    </center>
+                                </div>
                             </div>
-                            <div class="box-body" th:text="${isi.ISI}">
+                            <!--<img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}" alt="Photo" style="width: 100%"/>-->
+                            <div class="box-header"
+                                 style="background-color: #2c3e50;	color: #ffffff; min-height: 100px !important;">
+                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br/>
+                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                            </div>
+                            <div class="box-body" style="min-height: 65px !important;">
+                                <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
+                                <br/> <br/>
+                                <div th:text="${#strings.substring(isi.ISI,0,150)}+@{' ...'}" class="text-justify"></div>
+                                <a class="pull-right" th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3" >
-                        <div class="box box-widget" th:each="isi :${dua}">
-                            <img class="img-responsive" th:src="@{/static/dist/img/photo2.png}" alt="Photo" />
-                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
-                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br />
-                                <span class="text-muted"><b th:text="${isi.INISIAL}"></b></span><br />
+                    <div class="col-md-3">
+                        <div class="box box-widget" th:each="isi : ${dua}">
+                            <div th:switch="${isi.NAMA_FILE}">
+                                <div th:case="'-'">
+                                    <center>
+                                        <img class="img-responsive" th:src="@{/static/dist/img/not-available.jpg}" alt="" style="height: 250px"/>
+                                    </center>
+                                </div>
+                                <div th:case="*">
+                                    <center>
+                                        <img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}"
+                                             alt="" style="height: 250px"/>
+                                    </center>
+                                </div>
                             </div>
-                            <div class="box-body" th:text="${isi.ISI}">
+                            <div class="box-header"
+                                 style="background-color: #2c3e50;	color: #ffffff; min-height: 100px !important;">
+                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br/>
+                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                            </div>
+                            <div class="box-body text-justify" style="min-height: 245px !important;">
+                                <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
+                                <br/> <br/>
+                                <div th:text="${#strings.substring(isi.ISI,0,320)}+@{' ...'}"></div>
+                                <a class="pull-right" th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3" >
-                        <div class="box box-widget" th:each="isi :${tiga}">
-                            <img class="img-responsive" th:src="@{/static/dist/img/photo2.png}" alt="Photo" />
-                            <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
-                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br />
-                                <span class="text-muted"><b th:text="${isi.INISIAL}"></b></span><br />
+                    <div class="col-md-3">
+                        <div class="box box-widget" th:each="isi : ${tiga}">
+                            <div th:switch="${isi.NAMA_FILE}">
+                                <div th:case="'-'">
+                                    <center>
+                                        <img class="img-responsive" th:src="@{/static/dist/img/not-available.jpg}" alt="" style="height: 250px"/>
+                                    </center>
+                                </div>
+                                <div th:case="*">
+                                    <center>
+                                        <img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}"
+                                             alt="" style="height: 250px"/>
+                                    </center>
+                                </div>
                             </div>
-                            <div class="box-body" th:text="${isi.ISI}">
+                            <div class="box-header"
+                                 style="background-color: #2c3e50;	color: #ffffff; min-height: 100px !important;">
+                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br/>
+                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                            </div>
+                            <div class="box-body text-justify" style="min-height: 245px !important;">
+                                <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
+                                <br/> <br/>
+                                <div th:text="${#strings.substring(isi.ISI,0,320)} +@{' ...'}"></div>
+                                <a class="pull-right" th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
@@ -46,14 +94,96 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="box box-widget" th:each="isi :${data}">
-                                    <img class="img-responsive" th:src="@{/static/dist/img/photo2.png}" alt="Photo" />
-                                    <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
-                                        <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br />
-                                        <span class="text-muted"><b th:text="${isi.INISIAL}"></b></span><br />
+                            <div class="col-md-4" th:each="isi : ${semua_kegiatan}">
+                                <div class="box box-widget">
+                                    <div th:switch="${isi.NAMA_FILE}">
+                                        <div th:case="'-'">
+                                            <center>
+                                                <img class="img-responsive" th:src="@{/static/dist/img/not-available.jpg}" alt="" style="height: 130px"/>
+                                            </center>
+                                        </div>
+                                        <div th:case="*">
+                                            <center>
+                                                <img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}"
+                                                     alt="" style="height: 130px;"/>
+                                            </center>
+                                        </div>
                                     </div>
-                                    <div class="box-body" th:text="${isi.ISI}">
+                                    <div class="box-header" style="background-color: #2c3e50;	color: #ffffff; min-height: 75px;">
+                                        <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
+                                        <br/>
+                                        <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}">1 Nov 2017</i></span><br/>
+                                    </div>
+                                    <div class="box-body text-justify">
+                                        <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
+                                        <br/> <br/>
+                                        <div th:text="${#strings.substring(isi.ISI,0,300)}+@{' ...'}"></div>
+                                        <a th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih
+                                            Lanjut</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6" th:each="isi : ${satu}">
+                        <i>Total : </i><i th:text="${isi.TOTAL_COUNT}"></i> <i>Berita</i>
+                    </div>
+                    <div class="col-md-6 pull-right">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12" th:each="isi : ${detail}">
+                                <div class="box box-widget">
+                                    <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                        <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
+                                        <br/>
+                                        <span class="text-muted"><b>(TP4 PUSAT)</b> <i class="pull-right"
+                                                                                       th:text="${isi.CREATE_DATE}">1 Nov 2017</i></span><br/>
+                                    </div>
+                                    <div class="box-body">
+                                        <div th:switch="${isi.NAMA_FILE}">
+                                            <div th:case="'-'">
+
+                                            </div>
+                                            <div th:case="*">
+                                                <center>
+                                                    <img th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}"
+                                                         alt="" style="height: 250px"/>
+                                                    <br/>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div th:utext="${isi.ISI}" class="text-justify"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" hidden="true">
+                                <div class="box box-widget">
+                                    <div class="box-header" style="background-color: #2c3e50;	color: #ffffff;">
+                                        <span style="text-transform: uppercase;"><b>5 BERITA TERBARU</b></span> <br/>
+                                    </div>
+                                    <div class="box-body no-padding">
+                                        <!--<div th:utext="${isi.ISI}" class="text-justify"></div>-->
+                                        <!--<a th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih Lanjut</a>-->
+                                        <table th:each="isi : ${list}" class="table table-hover">
+                                            <tr>
+                                                <a>
+                                                    <td class="listBerita">
+                                                        <a th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">
+                                                            <div th:text="${isi.NAMA}"></div>
+                                                        </a>
+                                                    </td>
+                                                </a>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -63,5 +193,9 @@
             </section>
         </div>
     </div>
+
+
 </div>
-<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml">
+
+</div>

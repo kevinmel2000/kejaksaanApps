@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by mrapry on 4/18/17.
  */
 @Controller
-public class Profile {
+public class ProfileController {
 
     @Autowired
     private ProfileService profileService;

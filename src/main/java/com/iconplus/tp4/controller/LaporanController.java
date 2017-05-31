@@ -2,9 +2,9 @@ package com.iconplus.tp4.controller;
 
 
 import com.iconplus.tp4.service.entity.list.ListKonfigurasi;
-import com.iconplus.tp4.service.entity.list.ListProgramKerja;
+import com.iconplus.tp4.service.entity.list.ListLaporan;
 import com.iconplus.tp4.service.service.KonfigurasiService;
-import com.iconplus.tp4.service.service.ProgramKerjaService;
+import com.iconplus.tp4.service.service.LaporanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,22 +18,25 @@ import java.util.Map;
  * Created by mrapry on 4/18/17.
  */
 @Controller
-public class ProgramKerja {
+public class LaporanController {
 
     @Autowired
-    private ProgramKerjaService programKerjaService;
+    private LaporanService laporanService;
 
     @Autowired
     private KonfigurasiService konfigurasiService;
 
-    @RequestMapping(value = "/program_kerja", method = RequestMethod.GET)
-    public ModelAndView profilean(){
+    String pathFile = "";
+
+    @RequestMapping(value = "/laporan", method = RequestMethod.GET)
+    public ModelAndView laporan(){
         Map m = new HashMap<>();
-        ListProgramKerja lp = programKerjaService.listProgramKerja();
+        ListLaporan listLaporan = laporanService.listLaporan();
         ListKonfigurasi listKonfigurasi = konfigurasiService.listKonfigurasi();
         m.put("konfigurasi",listKonfigurasi.getKonfigurasiList());
-        m.put("DATA",lp.getProgramKerjas());
-        m.put("JUDUL","PROGRAM KERJA TIM PENGAWAL DAN PENGAMAN PEMERINTAH DAN PEMBANGUNAN");
-        return new ModelAndView("/program_kerja",m);
+        m.put("JUDUL","LAPORAN TP4 PERTAHUN");
+        m.put("DATA",listLaporan.getLaporanList());
+        m.put("PATH",pathFile);
+        return new ModelAndView("/laporan",m);
     }
 }

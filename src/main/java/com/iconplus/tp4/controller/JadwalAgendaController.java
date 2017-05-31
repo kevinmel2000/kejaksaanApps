@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by Drackcyber on 5/6/2017.
  */
 @Controller
-public class JadwalAgenda {
+public class JadwalAgendaController {
 
     @Autowired
     protected JadwalAgendaService jadwalAgendaService;

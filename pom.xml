@@ -6,7 +6,7 @@
 	<groupId>com.iconplus.tp4</groupId>
 	<artifactId>kejaksaan</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>kejaksaan</name>
 	<description>Demo project for Spring Boot</description>
@@ -58,6 +58,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			<version>1.4.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<!--<scope>provided</scope>-->
 		</dependency>
 	</dependencies>
 

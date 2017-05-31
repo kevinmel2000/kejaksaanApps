@@ -1,7 +1,11 @@
 package com.iconplus.tp4.service.service;
 
 import com.iconplus.tp4.service.entity.Permohonan;
+import com.iconplus.tp4.service.entity.list.ListBerita;
+import com.iconplus.tp4.service.entity.list.ListPeraturan;
 import com.iconplus.tp4.service.entity.list.ListPermohonan;
+import com.iconplus.tp4.service.entity.list.ListPesanPermohonan;
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -10,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,11 +24,11 @@ import java.util.Map;
 
 @Service
 public class PermohonanService {
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void listPermohonan(
+
+    public ListPesanPermohonan simpanPermohonan(
             String p_nama_pemohon,
             String p_alamat,
             String p_instansi,
@@ -37,25 +42,43 @@ public class PermohonanService {
             String p_nilai_project,
             String p_nama_project,
             String p_lokasi_project,
-            String p_dokumen_laporan,
-            String p_tgl_selesai,
-            String p_no_proyek,
             String p_jenis_instansi
     ){
-        jdbcTemplate.queryForList("SELECT PKG_PERMOHONAN.INS_PERMOHONAN('"+p_nama_pemohon+"', '"+p_alamat+"', '"+p_instansi+"', '"+p_telepon+"', '"+p_email+"', '"+p_jabatan+"', '"+p_unit_type+"', '"+p_unit_id+"', '"+p_judul+"', '"+p_deskripsi+"', '"+p_nilai_project+"', '"+p_nama_project+"', '"+p_lokasi_project+"', '"+p_dokumen_laporan+"', '"+p_tgl_selesai+"', '"+p_no_proyek+"', '"+p_jenis_instansi+"') AS result FROM DUAL");
-//        Permohonan permohonan  =new Permohonan();
-//        permohonan.setP_nama_pemohon(p_nama_pemohon);
-//        permohonan.setP_alamat(p_alamat);
-//        permohonan.setP_instansi(p_instansi);
-//        permohonan.setP_telepon(p_telepon);
-//        permohonan.setP_email(p_email);
-//        permohonan.setP_jabatan(p_jabatan);
-//        permohonan.setP_unit_type(p_unit_type);
-//        permohonan.setP_unit_id(p_unit_id);
-//        permohonan.setP_judul(p_judul);
-//        permohonan.setP_deskripsi(p_deskripsi);
-//        permohonan.setP_jenis(p_jenis_instansi);
-//        permohonan.s
+        System.out.println("SELECT PKG_PERMOHONAN.INS_PERMOHONAN('"+p_nama_pemohon+"', '"+p_alamat+"', '"+p_instansi+"', '"+p_telepon+"', '"+p_email+"', '"+p_jabatan+"', '"+p_unit_type+"', '"+p_unit_id+"', '"+p_judul+"', '"+p_deskripsi+"', '"+p_nilai_project+"', '"+p_nama_project+"', '"+p_lokasi_project+"', '"+p_jenis_instansi+"') as result FROM DUAL");
+        List<Map<String, Object>> result = jdbcTemplate.queryForList("SELECT PKG_PERMOHONAN.INS_PERMOHONAN('"+p_nama_pemohon+"', '"+p_alamat+"', '"+p_instansi+"', '"+p_telepon+"', '"+p_email+"', '"+p_jabatan+"', '"+p_unit_type+"', '"+p_unit_id+"', '"+p_judul+"', '"+p_deskripsi+"', '"+p_nilai_project+"', '"+p_nama_project+"', '"+p_lokasi_project+"', '"+p_jenis_instansi+"') as result FROM DUAL");
+        System.out.println(result);
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(ListPesanPermohonan.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            ListPesanPermohonan lp = (ListPesanPermohonan) jaxbUnmarshaller.unmarshal(new StringReader(result.get(0).get("result").toString()));
+            return lp;
+        } catch (JAXBException e) {
+            System.out.println("========== ERROR SERVICE PROFILE SERVICE ==========");
+            e.printStackTrace();
+            System.out.println("========== END ERROR SERVICE PROFILE SERVICE==========");
+            return null;
+        }
+    }
+
+    public ListPermohonan listPermohonan(String pstart, String length, String p_sort_by, String p_sort_dir,String search){
+        List<Map<String, Object>> result = jdbcTemplate.queryForList("SELECT pkg_permohonan.get_permohonan_pss('"+pstart+"','"+length+"','"+p_sort_by+"','"+p_sort_dir+"','"+search+"') AS result FROM DUAL");
+        if (result.isEmpty()){
+            System.out.println("======= Data ProfileService kosong!!======= ");
+        } else {
+            System.out.println("======= Data ProfileService Sukses diambil ======= ");
+            System.out.println(result);
+        }
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(ListPermohonan.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            ListPermohonan lp = (ListPermohonan) jaxbUnmarshaller.unmarshal(new StringReader(result.get(0).get("result").toString()));
+            return lp;
+        } catch (JAXBException e) {
+            System.out.println("========== ERROR SERVICE PROFILE SERVICE ==========");
+            e.printStackTrace();
+            System.out.println("========== END ERROR SERVICE PROFILE SERVICE==========");
+            return null;
+        }
     }
 
 }

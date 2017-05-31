@@ -42,9 +42,4 @@ public class ProfileService {
         }
     }
 
-//    public ListProfile listProfilePss(String)
-
-    public void listProfile(String id){
-
-    }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -66,75 +67,69 @@ public class PortalController {
         return new ModelAndView("/input_permohonan", m);
     }
 
-    @RequestMapping(value = "/simpan_permohonan", method = RequestMethod.POST)
-    public String simpan(
+    @RequestMapping(value = "/simpanPermohonan", method = RequestMethod.POST)
+    public ModelAndView simpan(
             @RequestParam("p_nama_pemohon")String nama,
             @RequestParam("p_alamat")String alamat,
             @RequestParam("p_instansi")String instansi,
             @RequestParam("p_telepon")String tlpn,
+            @RequestParam("p_jenis_instansi")String jenis_instansi,
             @RequestParam("p_email")String email,
             @RequestParam("p_jabatan")String jabatan,
             @RequestParam("p_unit_type")String unit_tipe,
-            @RequestParam("p_unit_id")String id,
-            @RequestParam("p_judul")String p_judul,
-            @RequestParam("p_deskripsi")String p_deskripsi,
-            @RequestParam("p_nilai_project")String p_nilai_project,
-            @RequestParam("p_nama_project")String p_nama_project,
-            @RequestParam("p_lokasi_project")String p_lokasi_project,
-            @RequestParam("p_jenis_instansi")String p_jenis_instansi
-    )
-    {
-        Permohonan permohonan = new Permohonan();
-        permohonan.setP_nama_pemohon(nama);
-        permohonan.setP_alamat(alamat);
-        permohonan.setP_instansi(instansi);
-        permohonan.setP_telepon(tlpn);
-        permohonan.setP_email(email);
-        permohonan.setP_jabatan(jabatan);
-        permohonan.setP_unit_type(unit_tipe);
-        permohonan.setP_unit_id(id);
-        permohonan.setP_judul(p_judul);
-        permohonan.setP_deskripsi(p_deskripsi);
-        permohonan.setP_jenis(p_jenis_instansi);
+            @RequestParam("p_unit_id")String unit_id,
+            @RequestParam("p_judul")String judul,
+            @RequestParam("p_deskripsi")String deskripsi,
+            @RequestParam("p_nilai_project")String nilai,
+            @RequestParam("p_nama_project")String nama_proyek,
+            @RequestParam("p_lokasi_project")String lokasi_proyek
+    ){
+        System.out.println(nama+" "+ alamat+" "+ instansi+" "+ tlpn+" "+ email+" "+ jabatan+" "+ unit_tipe+" "+ unit_id+" "+ judul+" "+ deskripsi+" "+ nilai+" "+ nama_proyek+" "+ lokasi_proyek+" "+ jenis_instansi);
+        Map m = new HashMap();
+        m.put("JUDUL","ID REGISTRASI TERLAH TERBIT");
+        m.put("nama",nama);
+        m.put("alamat",alamat);
+        m.put("instansi",instansi);
+        m.put("tlp",tlpn);
+        m.put("jenis_instansi",jenis_instansi);
+        m.put("email",email);
+        m.put("jabatan",jabatan);
+        m.put("unit_tipe",unit_tipe);
+        m.put("unit_id",unit_id.replace(",",""));
+        m.put("judul",judul);
+        m.put("deskripsi",deskripsi);
+        m.put("nilai",nilai);
+        m.put("nama_proyek",nama_proyek);
+        m.put("lokasi_proyek",lokasi_proyek);
 
-        permohonanService.listPermohonan(
-                ""+nama,
-                ""+alamat,
-                ""+instansi,
-                ""+tlpn,
-                ""+email,
-                ""+jabatan,
-                ""+unit_tipe,
-                ""+id,
-                ""+p_judul,
-                ""+p_deskripsi,
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""+instansi
+        ListPesanPermohonan listPermohonan = permohonanService.simpanPermohonan(
+                nama,
+                alamat,
+                instansi,
+                tlpn,
+                email,
+                jabatan,
+                unit_tipe,
+                unit_id.replace(",",""),
+                judul,
+                deskripsi,
+                nilai,
+                nama_proyek,
+                lokasi_proyek,
+                jenis_instansi
         );
+        System.out.println(listPermohonan.getPesanPermohonanList());
+        m.put("pesan",listPermohonan.getPesanPermohonanList());
+        return new ModelAndView("/simpan",m);
+    }
 
-
-
-
-        logger.info("p_nama_pemohon = "+nama);
-        logger.info("p_alamat = "+alamat);
-        logger.info("p_instansi = "+instansi);
-        logger.info("p_telepon = "+tlpn);
-        logger.info("p_email = "+email);
-        logger.info("p_jabatan = "+jabatan);
-        logger.info("p_unit_type = "+unit_tipe);
-        logger.info("p_unit_id = "+id);
-        logger.info("p_judul = "+p_judul);
-        logger.info("p_deskripsi = "+p_deskripsi);
-        logger.info("p_nilai_project = "+p_nilai_project);
-        logger.info("p_nama_project = "+p_nama_project);
-        logger.info("p_lokasi_project = "+p_lokasi_project);
-        logger.info("p_jenis_instansi = "+p_jenis_instansi);
-        return "redirect:/";
+    @RequestMapping(value = "/lihat_permohonan", method = RequestMethod.GET)
+    public ModelAndView getPermohonan(){
+        Map m = new HashMap();
+        ListPermohonan lp = permohonanService.listPermohonan("1","10000000000","","","");
+        m.put("JUDUL","LIST STATUS WALMAN MASUK");
+        m.put("data",lp.getPermohonanList());
+        return new ModelAndView("/permohonan_masuk",m);
     }
 
 

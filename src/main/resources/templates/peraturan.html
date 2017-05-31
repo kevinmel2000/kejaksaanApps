@@ -28,7 +28,20 @@
                                         <td th:text="${isi.NOMOR}"></td>
                                         <td th:text="${isi.TAHUN}"></td>
                                         <td th:text="${isi.TENTANG}"></td>
-                                        <td align="center"><a th:href="@{http://10.14.153.76:8080/getFile?dir=p&amp;namafile=}+${isi.NAMA_FILE}"><i class="fa fa-download"></i></a></td>
+                                        <td align="center">
+                                            <div th:switch="${isi.NAMA_FILE}">
+                                                <div th:case="'-'">
+                                                    <center>
+                                                        <!--<img class="img-responsive" th:src="@{/static/dist/img/not-available.jpg}" alt="" style="height: 250px"/>-->
+                                                    </center>
+                                                </div>
+                                                <div th:case="*">
+                                                    <center>
+                                                        <a th:href="@{http://10.14.153.76:8080/getFiles?namafile=}+${isi.NAMA_FILE}"><i class="fa fa-download"></i></a>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                            </td>
                                     </tr>
                                     </tbody>
                                 </table>
