@@ -46,11 +46,13 @@ public class JadwalAgendaController {
     @RequestMapping(value = "/bulan/{id}", method = RequestMethod.GET)
     public ModelAndView bulan(@PathVariable("id") String bulan){
         Map m = new HashMap<>();
+        String bulan_tangkap = getBulan(bulan);
         ListJadwal listJadwal = jadwalAgendaService.listJadwal("",bulan+"/2017");
         ListKonfigurasi listKonfigurasi = konfigurasiService.listKonfigurasi();
         m.put("konfigurasi",listKonfigurasi.getKonfigurasiList());
         m.put("JUDUL","JADWAL PADA BULAN ");
         m.put("BULAN",getBulan(bulan));
+        m.put("data",listJadwal.getJadwalAgendaList());
         return new ModelAndView("/jadwalagenda/agenda_bulanan",m);
     }
 
@@ -111,5 +113,16 @@ public class JadwalAgendaController {
             }break;
         }
         return hasil;
+    }
+
+    @RequestMapping(value = "/proyek_all", method = RequestMethod.GET)
+    public ModelAndView proyekAll(){
+        Map m = new HashMap();
+        ListKonfigurasi listKonfigurasi = konfigurasiService.listKonfigurasi();
+        ListProyek listProyek = proyekService.listProyek(100000,"");
+        m.put("konfigurasi",listKonfigurasi.getKonfigurasiList());
+        m.put("PROYEK",listProyek.getProyekList());
+        m.put("JUDUL","LIST DATA PROYEK TP4");
+        return new ModelAndView("/jadwalagenda/all_proyek",m);
     }
 }

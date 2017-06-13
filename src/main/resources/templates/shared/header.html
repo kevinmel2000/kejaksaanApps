@@ -62,7 +62,7 @@
     <div class="row" style="background-color:#1F1F1F;">
         <div class="col-md-12">
             <marquee>
-                <div style="color: #d0e8ff"><b>Pengumuman :</b> Launching Situs Perdana TP4 Kejaksaan Republik Indonesia</div>
+                <div style="color: #d0e8ff" th:each="isi : ${konfigurasi}"><b>Pengumuman :</b> <b th:text="${isi.RUN_TEXT}"></b></div>
             </marquee>
         </div>
     </div>

@@ -11,54 +11,6 @@
                                 <h5><b th:text="${JUDUL}"></b></h5>
                             </div>
                             <div class="box-body">
-
-                                <!--<table class="table table-striped">-->
-                                    <!--<tr>-->
-                                        <!--<td>Nama</td>-->
-                                        <!--<td><div th:text="${nama}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Alamat</td>-->
-                                        <!--<td><div th:text="${alamat}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Instansi</td>-->
-                                        <!--<td><div th:text="${instansi}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Telepone</td>-->
-                                        <!--<td><div th:text="${tlp}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Jenis Instansi</td>-->
-                                        <!--<td><div th:text="${jenis_instansi}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Email</td>-->
-                                        <!--<td><div th:text="${email}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Jabatan</td>-->
-                                        <!--<td><div th:text="${jabatan}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Unit Tipe</td>-->
-                                        <!--<td><div th:text="${unit_tipe}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Unit Id</td>-->
-                                        <!--<td><div th:text="${unit_id}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Judul</td>-->
-                                        <!--<td><div th:text="${judul}"></div></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                        <!--<td>Deskripsi</td>-->
-                                        <!--<td><div th:text="${deskripsi}"></div></td>-->
-                                    <!--</tr>-->
-                                <!--</table>-->
-
                                 <p class="text-center"> Permohonan anda telah berhasil teregistri. Silahkan melakukan pengiriman berkas dengan menyertakan :</p>
                                 <center>
                                     <table class="table" th:each="isi : ${pesan}">
@@ -84,4 +36,21 @@
 
 </div>
 <div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script th:inline="javascript">
+        var data = [[${pesan}]];
+        console.log(data[0].id_registrasi);
+        /*<![CDATA[*/
+        conn = new WebSocket('ws://10.14.153.76:8888');
+        var session = {
+            'type'  : 'permohonan',
+            'kanal' : 'notif',
+            'walman': data[0].id_registrasi,
+            'unitid': data[0].unit_id
+        };
+        conn.onopen = function(e) {
+            conn.send(JSON.stringify(session));
+        };
+
+        /*]]>*/
+    </script>
 </div>

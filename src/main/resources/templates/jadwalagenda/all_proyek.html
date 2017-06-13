@@ -5,28 +5,29 @@
     <div class="content-wrapper">
         <div class="container">
             <section class="content">
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="box box-widget">
                             <div class="box-header" style="background-color: #2c3e50; height: 50px; color: white; ">
-                                <h5><b th:utext="${JUDUL}+${BULAN}"></b></h5>
+                                <h5>
+                                    <b th:text="${JUDUL}"></b>
+                                </h5>
                             </div>
                             <div class="box-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>TANGGAL : JAM (AWAL)</th>
-                                        <th>TANGGAL : JAM (AKHIR)</th>
-                                        <th>PERIHAL</th>
-                                        <th>KETERANGGAN</th>
+                                        <th style="width: 50px;">NO</th>
+                                        <th>PROYEK</th>
+                                        <th style="width: 100px;">DETAIL</th>
                                     </tr>
                                     </thead>
                                     <tbody >
-                                    <tr th:each="isi,iterationStatus   : ${data}">
-                                        <td th:text="${isi.TGL_MULAI}"></td>
-                                        <td th:text="${isi.TGL_AKHIR}"></td>
-                                        <td th:text="${isi.JUDUL}"></td>
-                                        <td th:text="${isi.ISI}"></td>
+                                    <tr th:each="isi,iterationStatus   : ${PROYEK}">
+                                        <td th:text="${iterationStatus.count}"></td>
+                                        <td th:text="${isi.NAMA_PROJECT}"></td>
+                                        <td><a th:href="@{/proyek/}+${isi.NO_PERMOHONAN}">Detail</a></td>
                                     </tr>
                                     </tbody>
                                 </table>

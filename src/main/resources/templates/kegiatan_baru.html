@@ -1,9 +1,11 @@
-<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:fragment="stylesheets" xmlns:th="http://www.w3.org/1999/xhtml">
+</div>
 <div th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml" class="content-wrapper">
     <div class="content-wrapper">
         <div class="container">
             <section class="content">
                 <div class="row">
+                    <!--<div class="satu"></div>-->
                     <div class="col-md-6">
                         <div class="box box-widget" th:each="isi : ${satu}">
                             <div th:switch="${isi.NAMA_FILE}">
@@ -21,18 +23,21 @@
                             </div>
                             <!--<img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}" alt="Photo" style="width: 100%"/>-->
                             <div class="box-header"
-                                 style="background-color: #2c3e50;	color: #ffffff; min-height: 100px !important;">
-                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br/>
-                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                                 style="background-color: #2c3e50;	color: #ffffff; min-height: 70px !important;">
+                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
+                                <br/>
+                                <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i></span><br/>
                             </div>
-                            <div class="box-body" style="min-height: 65px !important;">
-                                <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
+                            <div class="box-body" style="min-height: 170px !important;">
+                                <b>Oleh : <i  th:utext="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
                                 <br/> <br/>
-                                <div th:text="${#strings.substring(isi.ISI,0,150)}+@{' ...'}" class="text-justify"></div>
-                                <a class="pull-right" th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
+                                <div id="data1" th:text="${isi.ISI}" class="readme text-justify"></div>
+                                <br/>
+                                <a class="pull-right" th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
+                    <!--<div class="dua"></div>-->
                     <div class="col-md-3">
                         <div class="box box-widget" th:each="isi : ${dua}">
                             <div th:switch="${isi.NAMA_FILE}">
@@ -50,17 +55,20 @@
                             </div>
                             <div class="box-header"
                                  style="background-color: #2c3e50;	color: #ffffff; min-height: 100px !important;">
-                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br/>
-                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
+                                <br/>
+                                <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i></span><br/>
                             </div>
                             <div class="box-body text-justify" style="min-height: 245px !important;">
                                 <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
                                 <br/> <br/>
-                                <div th:text="${#strings.substring(isi.ISI,0,320)}+@{' ...'}"></div>
-                                <a class="pull-right" th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
+                                <div class="readme" id="data2" th:text="${isi.ISI}"></div>
+                                <br/>
+                                <a class="pull-right" th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="box box-widget" th:each="isi : ${tiga}">
                             <div th:switch="${isi.NAMA_FILE}">
@@ -78,14 +86,16 @@
                             </div>
                             <div class="box-header"
                                  style="background-color: #2c3e50;	color: #ffffff; min-height: 100px !important;">
-                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span> <br/>
-                                <span class="text-muted"><b>(TP4 PUSAT)</b></span><br/>
+                                <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
+                                <br/>
+                                <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i></span><br/>
                             </div>
                             <div class="box-body text-justify" style="min-height: 245px !important;">
                                 <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
                                 <br/> <br/>
-                                <div th:text="${#strings.substring(isi.ISI,0,320)} +@{' ...'}"></div>
-                                <a class="pull-right" th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
+                                <div class="readme" id="data3" th:text="${isi.ISI}"></div>
+                                <br/>
+                                <a class="pull-right" th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">Baca  Lebih Lanjut</a>
                             </div>
                         </div>
                     </div>
@@ -94,7 +104,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-4" th:each="isi : ${semua_kegiatan}">
+                            <div class="semua"></div>
+                            <div class="col-md-4" th:each="isi,iterasi : ${semua_kegiatan}">
                                 <div class="box box-widget">
                                     <div th:switch="${isi.NAMA_FILE}">
                                         <div th:case="'-'">
@@ -112,13 +123,14 @@
                                     <div class="box-header" style="background-color: #2c3e50;	color: #ffffff; min-height: 75px;">
                                         <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
                                         <br/>
-                                        <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}">1 Nov 2017</i></span><br/>
+                                        <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i></span><br/>
                                     </div>
                                     <div class="box-body text-justify">
                                         <b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>
                                         <br/> <br/>
-                                        <div th:text="${#strings.substring(isi.ISI,0,300)}+@{' ...'}"></div>
-                                        <a th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih
+                                        <div th:id="@{'data'}+${iterasi.count+3}" th:text="${isi.ISI}"></div>
+                                        <br/>
+                                        <a th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih
                                             Lanjut</a>
                                     </div>
                                 </div>
@@ -128,13 +140,43 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6" th:each="isi : ${satu}">
-                        <i>Total : </i><i th:text="${isi.TOTAL_COUNT}"></i> <i>Berita</i>
-                    </div>
-                    <div class="col-md-6 pull-right">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12" th:each="isi,iterasi : ${data_page}">
+                                <div class="box box-widget">
 
+                                    <div class="box-header"
+                                         style="background-color: #2c3e50;	color: #ffffff; min-height: 75px;">
+                                        <span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>
+                                        <br/>
+                                        <span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i></span><br/>
+                                    </div>
+                                    <div class="box-body">
+                                        <div th:id="@{'halaman'}+${iterasi.count}" th:text="${isi.ISI}"></div>
+                                        <br/>
+                                        <a th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih
+                                            Lanjut</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+                <div class="row" th:each="isi : ${page}">
+                    <div class="col-md-6" >
+                        <i>Total : </i><i th:text="${total_count}"></i> <i>Berita</i>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <div th:if="${total_count}>12">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                <li th:each="i : ${#numbers.sequence(1, pagging)}"><a th:href="@{'/kegiatan/page/'}+${isi.KODE_GROUP}+@{'/'}+${i}" th:text="${i}"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="row">
                     <div class="col-md-12">
@@ -172,12 +214,12 @@
                                     </div>
                                     <div class="box-body no-padding">
                                         <!--<div th:utext="${isi.ISI}" class="text-justify"></div>-->
-                                        <!--<a th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih Lanjut</a>-->
+                                        <!--<a th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih Lanjut</a>-->
                                         <table th:each="isi : ${list}" class="table table-hover">
                                             <tr>
                                                 <a>
                                                     <td class="listBerita">
-                                                        <a th:href="@{/kegiatan/detail/}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">
+                                                        <a th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}">
                                                             <div th:text="${isi.NAMA}"></div>
                                                         </a>
                                                     </td>
@@ -198,4 +240,90 @@
 </div>
 <div th:fragment="scripts" xmlns:th="http://www.w3.org/1999/xhtml">
 
+    <script th:src="@{/static/plugins/jsdot/jquery.dotdotdot.js}"></script>
+    <script>
+        /*<![CDATA[*/
+        $( document ).ready(function() {
+
+            for (i=1;i<=1;i++){
+                removerHTMl('data'+i,"atas");
+            }
+            for (i=2;i<=3;i++){
+                removerHTMl('data'+i,"dua");
+            }
+            for (i=4;i<=12;i++){
+                removerHTMl('data'+i,"sembilan");
+            }
+
+            for (i=1;i<=10;i++){
+                removerHTMl('halaman'+i,"sepuluh");
+            }
+
+
+        });
+
+        function removerHTMl(param, identitas) {
+            var aaaa = /(<([^>]+)>)/ig
+            var body = $('#'+param).text();
+            var result = body.replace(aaaa, "");
+            $('#'+param).text(result);
+            if (result){
+                if(identitas == "atas"){
+                    $('#'+param).dotdotdot({
+                        height		: 70
+                    });
+                } else if (identitas =="dua"){
+                    $('#'+param).dotdotdot({
+                        height		: 200
+                    });
+                } else if(identitas =="sepuluh"){
+                    $('#'+param).dotdotdot({
+                        height		: 100
+                    });
+                }else{
+                    $('#'+param).dotdotdot({
+                        height		: 150
+                    });
+                }
+
+            } else {
+                console.log("what happen " +param);
+            }
+        }
+
+        /*]]>*/
+    </script>
+
+
 </div>
+
+
+<!--<div class="col-md-4" th:each="isi : ${semua_kegiatan}">-->
+    <!--<div class="box box-widget">-->
+        <!--<div th:switch="${isi.NAMA_FILE}">-->
+            <!--<div th:case="'-'">-->
+                <!--<center>-->
+                    <!--<img class="img-responsive" th:src="@{/static/dist/img/not-available.jpg}" alt="" style="height: 130px"/>-->
+                <!--</center>-->
+            <!--</div>-->
+            <!--<div th:case="*">-->
+                <!--<center>-->
+                    <!--<img class="img-responsive" th:src="@{http://10.14.153.76:8080/getImage?dir=k&amp;namafile=}+${isi.NAMA_FILE}"-->
+                         <!--alt="" style="height: 130px;"/>-->
+                <!--</center>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="box-header" style="background-color: #2c3e50;	color: #ffffff; min-height: 75px;">-->
+            <!--<span style="text-transform: uppercase;"><b th:text="${isi.NAMA}"></b></span>-->
+            <!--<br/>-->
+            <!--<span class="text-muted"><b th:text="${jenis_kegiatan}"></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i></span><br/>-->
+        <!--</div>-->
+        <!--<div class="box-body text-justify">-->
+            <!--<b>Oleh : <i  th:text="${isi.CREATE_BY}"></i></b><i class="pull-right" th:text="${isi.CREATE_DATE}"></i>-->
+            <!--<br/> <br/>-->
+            <!--<div th:text="${#strings.substring(isi.ISI,0,300)}+@{' ...'}"></div>-->
+            <!--<a th:href="@{'/kegiatan/detail/'}+${isi.KODE_GROUP}+@{'/'}+${isi.KODE_KEGIATAN}" class="pull-right">Baca Lebih-->
+                <!--Lanjut</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

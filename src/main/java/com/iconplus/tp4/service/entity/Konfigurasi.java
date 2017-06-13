@@ -16,9 +16,10 @@ public class Konfigurasi {
     private String ALAMAT;
     private String EMAIL;
     private String TLP;
+    private String RUN_TEXT;
 
 
-    public Konfigurasi(String ID_APLIKASI, String TITLE, String NAMA_FILE, String TENTANG, String ALAMAT, String EMAIL, String TLP) {
+    public Konfigurasi(String ID_APLIKASI, String TITLE, String NAMA_FILE, String TENTANG, String ALAMAT, String EMAIL, String TLP, String RUN_TEXT) {
         this.ID_APLIKASI = ID_APLIKASI;
         this.TITLE = TITLE;
         this.NAMA_FILE = NAMA_FILE;
@@ -26,6 +27,7 @@ public class Konfigurasi {
         this.ALAMAT = ALAMAT;
         this.EMAIL = EMAIL;
         this.TLP = TLP;
+        this.RUN_TEXT = RUN_TEXT;
     }
 
     public Konfigurasi() {
@@ -92,6 +94,15 @@ public class Konfigurasi {
     @XmlElement(name = "TENTANG")
     public void setTENTANG(String TENTANG) {
         this.TENTANG = TENTANG;
+    }
+
+    public String getRUN_TEXT() {
+        return RUN_TEXT;
+    }
+
+    @XmlElement(name = "RUN_TEXT")
+    public void setRUN_TEXT(String RUN_TEXT) {
+        this.RUN_TEXT = RUN_TEXT;
     }
 
     @Override

@@ -40,15 +40,21 @@ public class PortalController {
     @Autowired
     private PermohonanService permohonanService;
 
+    @Autowired
+    private SliderService sliderService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(){
         Map m = new HashMap();
         ListKonfigurasi listKonfigurasi = konfigurasiService.listKonfigurasi();
+        ListSlider listSlider = sliderService.listSlider();
         ListProfile lp = profileService.listProfil("1");
         ListKegiatan lk  = kegiatanService.listKegiatanPss("1","4","","","");
         m.put("data",lp.getProfileList());
+        m.put("slider",listSlider.getSliderList());
         m.put("kegiatan",lk.getKegiatanList());
         m.put("konfigurasi",listKonfigurasi.getKonfigurasiList());
+        System.out.println(listKonfigurasi.getKonfigurasiList());
         return new ModelAndView("/index",m);
     }
 
@@ -101,26 +107,48 @@ public class PortalController {
         m.put("nilai",nilai);
         m.put("nama_proyek",nama_proyek);
         m.put("lokasi_proyek",lokasi_proyek);
-
-        ListPesanPermohonan listPermohonan = permohonanService.simpanPermohonan(
-                nama,
-                alamat,
-                instansi,
-                tlpn,
-                email,
-                jabatan,
-                unit_tipe,
-                unit_id.replace(",",""),
-                judul,
-                deskripsi,
-                nilai,
-                nama_proyek,
-                lokasi_proyek,
-                jenis_instansi
-        );
-        System.out.println(listPermohonan.getPesanPermohonanList());
-        m.put("pesan",listPermohonan.getPesanPermohonanList());
-        return new ModelAndView("/simpan",m);
+        System.out.println("===============ini unit tipe ="+unit_tipe);
+        if(unit_tipe.equals("1")){
+            ListPesanPermohonan listPermohonan = permohonanService.simpanPermohonan(
+                    nama,
+                    alamat,
+                    instansi,
+                    tlpn,
+                    email,
+                    jabatan,
+                    unit_tipe,
+                    "1",
+                    judul,
+                    deskripsi,
+                    nilai,
+                    nama_proyek,
+                    lokasi_proyek,
+                    jenis_instansi
+            );
+            System.out.println(listPermohonan.getPesanPermohonanList());
+            m.put("pesan",listPermohonan.getPesanPermohonanList());
+            return new ModelAndView("/simpan",m);
+        } else {
+            ListPesanPermohonan listPermohonan = permohonanService.simpanPermohonan(
+                    nama,
+                    alamat,
+                    instansi,
+                    tlpn,
+                    email,
+                    jabatan,
+                    unit_tipe,
+                    unit_id.replace(",",""),
+                    judul,
+                    deskripsi,
+                    nilai,
+                    nama_proyek,
+                    lokasi_proyek,
+                    jenis_instansi
+            );
+            System.out.println(listPermohonan.getPesanPermohonanList());
+            m.put("pesan",listPermohonan.getPesanPermohonanList());
+            return new ModelAndView("/simpan",m);
+        }
     }
 
     @RequestMapping(value = "/lihat_permohonan", method = RequestMethod.GET)
