@@ -16,40 +16,40 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Nama Pemohon</label>
-                                            <input type="text" class="form-control" name="p_nama_pemohon" />
+                                            <input type="text" class="form-control" name="p_nama_pemohon" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat</label>
-                                            <textarea name="p_alamat" rows="3" class="form-control"></textarea>
+                                            <textarea name="p_alamat" rows="3" class="form-control" required="true"></textarea>
                                             <!--<input type="text" class="form-control"  />-->
                                         </div>
                                         <div class="form-group">
-                                            <label>Instansi</label>
-                                            <input type="text" class="form-control" name="p_instansi" />
-                                        </div>
-                                        <div class="form-group">
                                             <label>Jenis Instansi</label>
-                                            <select name="p_jenis_instansi" class="form-control" >
+                                            <select name="p_jenis_instansi" class="form-control" required="true">
                                                 <option th:each="isi : ${list_instansi}"
                                                         th:value="${isi.INS_KODE}"
                                                         th:text="${isi.INS_NAMA}" style="text-transform: uppercase;"></option>
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label>Instansi</label>
+                                            <input type="text" class="form-control" name="p_instansi" required="true"/>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Telepon</label>
-                                            <input type="text" class="form-control"  name="p_telepon"/>
+                                            <input type="text" class="form-control"  name="p_telepon" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" class="form-control"  name="p_email"/>
+                                            <input type="text" class="form-control"  name="p_email" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Jabatan</label>
-                                            <input type="text" class="form-control"  name="p_jabatan"/>
+                                            <input type="text" class="form-control"  name="p_jabatan" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Jenis Unit</label>
-                                            <select name="p_unit_type" class="form-control" id="jenisUnit">
+                                            <select name="p_unit_type" class="form-control" id="jenisUnit" required="true">
                                                 <option value="1">Kejaksaan Agung</option>
                                                 <option value="2">Kejaksaan Tinggi (Kejati)</option>
                                                 <option value="3">Kejaksaan Negeri (Kejari)</option>
@@ -75,23 +75,23 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Perihal</label>
-                                            <input type="text" class="form-control"  name="p_judul"/>
+                                            <input type="text" class="form-control"  name="p_judul" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Uraian</label>
-                                            <textarea rows="3" class="form-control" name="p_deskripsi" />
+                                            <textarea rows="3" class="form-control" name="p_deskripsi" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Nilai Project</label>
-                                            <input type="number" class="form-control"  name="p_nilai_project"/>
+                                            <input type="number" class="form-control"  name="p_nilai_project" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Project</label>
-                                            <input type="text" class="form-control"  name="p_nama_project"/>
+                                            <input type="text" class="form-control"  name="p_nama_project" required="true"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Lokasi Project</label>
-                                            <textarea rows="3" class="form-control"  name="p_lokasi_project"/>
+                                            <textarea rows="3" class="form-control"  name="p_lokasi_project" required="true"/>
                                         </div>
                                     </div>
                                     <!-- /.box-body -->
@@ -132,17 +132,17 @@
             $('#jenisUnit').on('change', function () {
                 if (this.value==2){
                     $('#kejatiUnit').show();
-                    $('#kejariUnit').hide();
+                    $('#kejariUnit').hide().prop('required',false);
                     $('#kejariUnit select').val("");
                 } else if(this.value==3) {
-                    $('#kejatiUnit').hide();
+                    $('#kejatiUnit').hide().prop('required',false);
                     $('#kejatiUnit select').val("");
                     $('#kejariUnit').show();
                 } else{
                     $('#kejatiUnit select').val("");
                     $('#kejariUnit select').val("");
-                    $('#kejatiUnit').hide();
-                    $('#kejariUnit').hide();
+                    $('#kejatiUnit').hide().prop('required',false);
+                    $('#kejariUnit').hide().prop('required',false);
                 }
             });
         });

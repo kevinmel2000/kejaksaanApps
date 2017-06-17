@@ -11,7 +11,7 @@
                                 <h5><b th:text="${JUDUL}"></b></h5>
                             </div>
                             <div class="box-body">
-                                <p class="text-center"> Permohonan anda telah berhasil teregistri. Silahkan melakukan pengiriman berkas dengan menyertakan :</p>
+                                <p class="text-center">Untuk Proses Selanjutnya silahkan mengirim berkas fisik dengan menyertakan :</p>
                                 <center>
                                     <table class="table" th:each="isi : ${pesan}">
                                         <tr>
@@ -21,6 +21,10 @@
                                         <tr>
                                             <td>Alamat Tujuan</td>
                                             <td th:text="${isi.alamat_unit}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Catatan</td>
+                                            <td>Data No Registrasi dan Alamat Tujuan juga terkirim dialamat email <b th:text="${isi.email}"></b></td>
                                         </tr>
                                     </table>
                                 </center>
@@ -40,7 +44,7 @@
         var data = [[${pesan}]];
         console.log(data[0].id_registrasi);
         /*<![CDATA[*/
-        conn = new WebSocket('ws://10.14.153.76:8888');
+        conn = new WebSocket('ws://apps.iconpln.co.id:9095');
         var session = {
             'type'  : 'permohonan',
             'kanal' : 'notif',
@@ -53,4 +57,45 @@
 
         /*]]>*/
     </script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var data = [[${pesan}]];
+        var params = {
+            key: "tp4",
+            topic: "walman",
+            title: "PROSES REGISTRASI PERMOHONAN BERHASIL",
+            isi: data[0].unit_id+"|"+data[0].id_registrasi+"|"+data[0].alamat_unit
+        }
+        $.ajax({
+            type: "POST",
+            url: "http://apps.iconpln.co.id:6063/fcm",
+            xhrFields: {cors: true},
+            success: function (msg) {
+                console.log(msg);
+            },
+            data: JSON.stringify(params)
+        });
+
+        /*]]>*/
+    </script>
+
+    <script th:inline="javascript">
+        var data = [[${pesan}]];
+        var params = {
+            email: data[0].email,
+            noRegistrasi :data[0].id_registrasi,
+            alamat :data[0].alamat_unit
+        }
+        $.ajax({
+            type: "POST",
+            url: "10.14.152.186:8080",
+            xhrFields: {cors: true},
+            success: function (msg) {
+                console.log(msg);
+            },
+            data: JSON.stringify(params)
+        });
+    </script>
+
 </div>

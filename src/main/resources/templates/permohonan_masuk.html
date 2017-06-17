@@ -12,7 +12,7 @@
                                 <h5><b th:text="${JUDUL}"></b></h5>
                             </div>
                             <div class="box-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example2" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <td>Nama Proyek</td>
@@ -47,10 +47,10 @@
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
+                "searching": true,
+                "ordering": false,
+//                "info": true,
+                "autoWidth": true
             });
         });
     </script>

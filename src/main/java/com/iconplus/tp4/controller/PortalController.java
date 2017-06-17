@@ -3,6 +3,9 @@ package com.iconplus.tp4.controller;
 import com.iconplus.tp4.service.entity.Permohonan;
 import com.iconplus.tp4.service.entity.list.*;
 import com.iconplus.tp4.service.service.*;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,7 +95,7 @@ public class PortalController {
     ){
         System.out.println(nama+" "+ alamat+" "+ instansi+" "+ tlpn+" "+ email+" "+ jabatan+" "+ unit_tipe+" "+ unit_id+" "+ judul+" "+ deskripsi+" "+ nilai+" "+ nama_proyek+" "+ lokasi_proyek+" "+ jenis_instansi);
         Map m = new HashMap();
-        m.put("JUDUL","ID REGISTRASI TERLAH TERBIT");
+        m.put("JUDUL","PROSES REGISTRASI PERMOHONAN BERHASIL");
         m.put("nama",nama);
         m.put("alamat",alamat);
         m.put("instansi",instansi);
@@ -127,6 +130,7 @@ public class PortalController {
             );
             System.out.println(listPermohonan.getPesanPermohonanList());
             m.put("pesan",listPermohonan.getPesanPermohonanList());
+            sendMail(listPermohonan.getPesanPermohonanList().get(0).getEmail(),listPermohonan.getPesanPermohonanList().get(0).getId_registrasi(),listPermohonan.getPesanPermohonanList().get(0).getAlamat_unit());
             return new ModelAndView("/simpan",m);
         } else {
             ListPesanPermohonan listPermohonan = permohonanService.simpanPermohonan(
@@ -147,6 +151,7 @@ public class PortalController {
             );
             System.out.println(listPermohonan.getPesanPermohonanList());
             m.put("pesan",listPermohonan.getPesanPermohonanList());
+            sendMail(listPermohonan.getPesanPermohonanList().get(0).getEmail(),listPermohonan.getPesanPermohonanList().get(0).getId_registrasi(),listPermohonan.getPesanPermohonanList().get(0).getAlamat_unit());
             return new ModelAndView("/simpan",m);
         }
     }
@@ -158,6 +163,26 @@ public class PortalController {
         m.put("JUDUL","LIST STATUS WALMAN MASUK");
         m.put("data",lp.getPermohonanList());
         return new ModelAndView("/permohonan_masuk",m);
+    }
+
+    private void sendMail(String mail, String noRegister,String alamat){
+        HtmlEmail email = new HtmlEmail();
+        email.setHostName("smtp.googlemail.com");
+        email.setSmtpPort(465);
+        email.setSSL(true);
+        email.setAuthentication("walman.tp4@gmail.com","walman123");
+        try {
+            System.out.println("COBA MENGIRIMKAN PESAN");
+            email.setFrom("walman.tp4@gmail.com","WALMAN TP4");
+            email.addTo(mail);
+            email.setSubject("PROSES REGISTRASI PERMOHONAN BERHASIL");
+            email.setHtmlMsg("<b>PROSES REGISTRASI PERMOHONAN BERHASIL</b><br/><br/>Untuk Proses Selanjutnya silahkan mengirim berkas fisik dengan menyertakan : <br/><br/> Nomor Registrasi : <b>"+noRegister+"</b><br/>Alamat : <b>"+alamat+"</b>");
+            email.send();
+        } catch (EmailException e) {
+            System.out.println("GAGAL MENGIRIMKAN PESAN");
+            e.printStackTrace();
+        }
+
     }
 
 

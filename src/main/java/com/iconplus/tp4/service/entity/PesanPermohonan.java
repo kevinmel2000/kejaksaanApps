@@ -12,11 +12,13 @@ public class PesanPermohonan {
     private String id_registrasi;
     private String alamat_unit;
     private String unit_id;
+    private String email;
 
-    public PesanPermohonan(String id_registrasi, String alamat_unit, String unit_id) {
+    public PesanPermohonan(String id_registrasi, String alamat_unit, String unit_id, String email) {
         this.id_registrasi = id_registrasi;
         this.alamat_unit = alamat_unit;
         this.unit_id = unit_id;
+        this.email = email;
     }
 
     public PesanPermohonan() {
@@ -49,12 +51,22 @@ public class PesanPermohonan {
         this.unit_id = unit_id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    @XmlElement(name = "EMAIL")
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "PesanPermohonan{" +
                 "id_registrasi='" + id_registrasi + '\'' +
                 ", alamat_unit='" + alamat_unit + '\'' +
                 ", unit_id='" + unit_id + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
